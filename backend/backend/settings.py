@@ -18,6 +18,7 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 CORS_ALLOW_ALL_ORIGINS = True  # use .env for stricter policy in production
 
 # Serve React build
+TEMPLATES[0]["DIRS"] = [os.path.join(BASE_DIR, '..', 'frontend', 'build')]
 import mimetypes
 mimetypes.add_type("application/javascript", ".js", True)
 
@@ -28,7 +29,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-dev-key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
 
 # Application definition
@@ -63,7 +64,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, '..', 'frontend', 'build')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
